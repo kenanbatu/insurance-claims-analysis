@@ -1,0 +1,58 @@
+[
+  {
+    "objectID": "about.html",
+    "href": "about.html",
+    "title": "Project Details",
+    "section": "",
+    "text": "Insurance companies need to identify which customers are more likely to file a claim. However, claims are rare compared to non-claims, which creates a highly imbalanced dataset and makes prediction challenging."
+  },
+  {
+    "objectID": "about.html#the-problem",
+    "href": "about.html#the-problem",
+    "title": "Project Details",
+    "section": "",
+    "text": "Insurance companies need to identify which customers are more likely to file a claim. However, claims are rare compared to non-claims, which creates a highly imbalanced dataset and makes prediction challenging."
+  },
+  {
+    "objectID": "about.html#our-approach",
+    "href": "about.html#our-approach",
+    "title": "Project Details",
+    "section": "Our Approach",
+    "text": "Our Approach\n\nLoaded, cleaned, and validated the dataset\n\nExplored key patterns in demographics, vehicle features, and region\n\nIdentified class imbalance and addressed it using oversampling\n\nBuilt a Random Forest classification model to predict claim likelihood\n\nEvaluated performance using ROC-AUC, F1 score, accuracy, and confusion matrix"
+  },
+  {
+    "objectID": "about.html#key-insights",
+    "href": "about.html#key-insights",
+    "title": "Project Details",
+    "section": "Key Insights",
+    "text": "Key Insights\n\nClaims are extremely rare, making imbalance a central issue\n\nSeveral features (vehicle age, region density, safety features) show clear predictive strength\n\nOversampling allowed the model to learn meaningful claim patterns\n\nThe Random Forest model provided reliable performance on the test set"
+  },
+  {
+    "objectID": "about.html#team-members",
+    "href": "about.html#team-members",
+    "title": "Project Details",
+    "section": "Team Members",
+    "text": "Team Members\n\nKenan Batu\nNyasha Sibanda"
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Insurance Claims Analysis",
+    "section": "",
+    "text": "This website summarizes our group project on predicting insurance claim likelihood using policyholder demographics, vehicle characteristics, and policy features.\nBecause claims are rare compared to non-claims, the original dataset is highly imbalanced. We clean the data, explore key patterns, address the class imbalance with oversampling, and train a machine learning model to estimate the probability that a customer will file a claim."
+  },
+  {
+    "objectID": "index.html#overview",
+    "href": "index.html#overview",
+    "title": "Insurance Claims Analysis",
+    "section": "",
+    "text": "This website summarizes our group project on predicting insurance claim likelihood using policyholder demographics, vehicle characteristics, and policy features.\nBecause claims are rare compared to non-claims, the original dataset is highly imbalanced. We clean the data, explore key patterns, address the class imbalance with oversampling, and train a machine learning model to estimate the probability that a customer will file a claim."
+  },
+  {
+    "objectID": "index.html#what-youll-find-here",
+    "href": "index.html#what-youll-find-here",
+    "title": "Insurance Claims Analysis",
+    "section": "What You’ll Find Here",
+    "text": "What You’ll Find Here\n\nA description of the dataset and problem\nKey visualizations showing class imbalance and feature patterns\nA summary of our modeling approach and performance\nBusiness insights based on our findings"
+  }
+]

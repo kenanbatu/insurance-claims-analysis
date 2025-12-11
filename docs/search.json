@@ -1,0 +1,163 @@
+[
+  {
+    "objectID": "about.html",
+    "href": "about.html",
+    "title": "Project Details",
+    "section": "",
+    "text": "Insurance companies need to understand which policies are more likely to result in claims so they can price risk appropriately and focus attention on higher-risk customers. However, in our dataset only about 6.4% of policies have a claim, while 93.6% do not. This strong class imbalance (about 14.6 : 1) makes prediction challenging, because a naïve model could achieve high accuracy by always predicting “no claim” without learning any useful pattern."
+  },
+  {
+    "objectID": "about.html#the-problem",
+    "href": "about.html#the-problem",
+    "title": "Project Details",
+    "section": "",
+    "text": "Insurance companies need to understand which policies are more likely to result in claims so they can price risk appropriately and focus attention on higher-risk customers. However, in our dataset only about 6.4% of policies have a claim, while 93.6% do not. This strong class imbalance (about 14.6 : 1) makes prediction challenging, because a naïve model could achieve high accuracy by always predicting “no claim” without learning any useful pattern."
+  },
+  {
+    "objectID": "about.html#the-data",
+    "href": "about.html#the-data",
+    "title": "Project Details",
+    "section": "The Data",
+    "text": "The Data\nWe work with a dataset of 58,592 insurance policies and 41 features, including:\n\nPolicy information (subscription length, policy details)\nVehicle characteristics (vehicle age, engine specs, safety features)\nRegional information (region codes and region density)\nA binary target variable claim_status indicating whether a claim occurred (1) or not (0)\n\nDuring our initial checks, we confirmed:\n\nNo missing values\n\nNo duplicate rows\n\nConsistent data types across columns\n\nThis allowed us to focus on feature engineering and modeling instead of heavy data cleaning."
+  },
+  {
+    "objectID": "about.html#our-approach",
+    "href": "about.html#our-approach",
+    "title": "Project Details",
+    "section": "Our Approach",
+    "text": "Our Approach\nOur main steps were:\n\nData validation and preparation\n\nVerified there were no missing values or duplicates\n\nEncoded categorical variables into numeric form suitable for modeling\n\nCreated simple engineered features (e.g., grouping ages or combining risk-related information)\n\nExploratory data analysis (EDA)\n\nMeasured class imbalance (93.6% no-claim vs 6.4% claim)\n\nExamined distributions of key features such as subscription length and vehicle age\n\nCompared claim rates across regions and other relevant categories\n\nHandling class imbalance\n\nApplied Random Oversampling to the training set only, so the model could learn from enough claim examples while still evaluating on the original, imbalanced test set.\n\nModeling and evaluation\n\nTrained a Random Forest classifier on the oversampled training data\n\nEvaluated the model on the untouched test data using:\n\nAccuracy\nPrecision\nRecall\nF1-score\nROC-AUC\nConfusion matrix"
+  },
+  {
+    "objectID": "about.html#high-level-findings",
+    "href": "about.html#high-level-findings",
+    "title": "Project Details",
+    "section": "High-Level Findings",
+    "text": "High-Level Findings\n\nThe target variable is heavily imbalanced, but oversampling helps the model recognize claim cases.\nFeatures like subscription length, vehicle age, and region-related variables are among the most important predictors in the Random Forest model.\nThe model is able to capture non-random patterns in claim behavior and can serve as a screening tool to flag higher-risk policies for closer review."
+  },
+  {
+    "objectID": "about.html#team",
+    "href": "about.html#team",
+    "title": "Project Details",
+    "section": "Team",
+    "text": "Team\n\nKenan Batu\nNyasha Sibanda"
+  },
+  {
+    "objectID": "eda.html",
+    "href": "eda.html",
+    "title": "Exploratory Analysis",
+    "section": "",
+    "text": "We begin our exploratory data analysis by looking at the distributions of three important numerical variables:\n\nCustomer age\nVehicle age\nSubscription length\n\nThese histograms help us understand the spread and central tendencies of key features that later play a role in the model.\n\nWhat we observe:\n\nCustomer ages are mostly concentrated in a working-age range (roughly mid-20s to mid-50s).\n\nVehicle age is skewed toward newer cars, but older vehicles are present as well.\n\nSubscription length varies widely, which later shows up as an important predictor of claim risk.\n\nThese patterns help us understand the context of the model inputs."
+  },
+  {
+    "objectID": "eda.html#distributions-of-key-numerical-features",
+    "href": "eda.html#distributions-of-key-numerical-features",
+    "title": "Exploratory Analysis",
+    "section": "",
+    "text": "We begin our exploratory data analysis by looking at the distributions of three important numerical variables:\n\nCustomer age\nVehicle age\nSubscription length\n\nThese histograms help us understand the spread and central tendencies of key features that later play a role in the model.\n\nWhat we observe:\n\nCustomer ages are mostly concentrated in a working-age range (roughly mid-20s to mid-50s).\n\nVehicle age is skewed toward newer cars, but older vehicles are present as well.\n\nSubscription length varies widely, which later shows up as an important predictor of claim risk.\n\nThese patterns help us understand the context of the model inputs."
+  },
+  {
+    "objectID": "eda.html#claim-rates-across-categories",
+    "href": "eda.html#claim-rates-across-categories",
+    "title": "Exploratory Analysis",
+    "section": "Claim Rates Across Categories",
+    "text": "Claim Rates Across Categories\nNext, we examine how claim rates vary across key categorical features:\n\nFuel type\n\nRegion density\n\nVehicle segment\n\nThis lets us see which groups have relatively higher or lower risk.\n\nInsights:\n\nCertain fuel types are associated with slightly higher claim frequencies.\n\nRegions with higher population density tend to show higher claim rates, which is consistent with increased traffic exposure.\n\nSome vehicle segments stand out with noticeably higher risk than others.\n\nThese category-level differences help explain why these variables can be useful predictors in the model."
+  },
+  {
+    "objectID": "eda.html#regional-claim-differences",
+    "href": "eda.html#regional-claim-differences",
+    "title": "Exploratory Analysis",
+    "section": "Regional Claim Differences",
+    "text": "Regional Claim Differences\nWe also look at claim rates by region. This highlights how geography influences risk.\n\nInterpretation:\n\nSome regions have claim rates above 10%, while others are closer to 4%.\n\nThis indicates that where a customer lives is an important factor in claim likelihood.\n\nThese regional patterns later align with feature importance results from the Random Forest model."
+  },
+  {
+    "objectID": "eda.html#subscription-length-and-claim-behavior",
+    "href": "eda.html#subscription-length-and-claim-behavior",
+    "title": "Exploratory Analysis",
+    "section": "Subscription Length and Claim Behavior",
+    "text": "Subscription Length and Claim Behavior\nSubscription length captures how long a policy has been active. We explore how claim behavior varies across different subscription lengths.\n\nWhat we see:\n\nPolicies with longer subscription durations tend to have higher observed claim rates.\n\nThis makes sense: the longer a policy is active, the more time there is for a claim to occur.\n\nThis supports the idea that subscription length is not just a timing variable, but a meaningful indicator of accumulated risk."
+  },
+  {
+    "objectID": "eda.html#interactive-claim-rates-by-region",
+    "href": "eda.html#interactive-claim-rates-by-region",
+    "title": "Exploratory Analysis",
+    "section": "Interactive: Claim Rates by Region",
+    "text": "Interactive: Claim Rates by Region\nThe plot below is an interactive visualization of claim behavior by region. Each point represents a region, with:\n\nX-axis: number of policies\n\nY-axis: claim rate (percentage)\n\nPoint size: number of policies\n\nColor: claim percentage\n\nHover over points to see more detailed information for each region.\nimport pandas as pd import plotly.express as px\ndf = pd.read_csv(“insurance_claims.csv”)\nregion_summary = df.groupby(‘region_code’).agg({ ‘claim_status’: [‘mean’, ‘count’], ‘customer_age’: ‘mean’, ‘region_density’: ‘first’ }).reset_index()\nregion_summary.columns = [‘region’, ‘claim_rate’, ‘policies’, ‘avg_age’, ‘density’] region_summary[‘claim_pct’] = region_summary[‘claim_rate’] * 100\nfig = px.scatter( region_summary, x=‘policies’, y=‘claim_pct’, size=‘policies’, color=‘claim_pct’, hover_name=‘region’, hover_data={‘policies’:‘:,’, ‘claim_pct’:‘:.2f’, ‘avg_age’:‘:.1f’}, title=‘Interactive: Claim Rates by Region’, color_continuous_scale=‘Reds’, size_max=30, height=500 )\nfig"
+  },
+  {
+    "objectID": "model.html",
+    "href": "model.html",
+    "title": "Model & Results",
+    "section": "",
+    "text": "The target variable (claim_status) is highly imbalanced:\n\n93.6% of policies result in no claim\n6.4% of policies result in a claim\nImbalance ratio: 14.6 : 1\n\nA model trained directly on this distribution would tend to predict “no claim” almost every time. To address this, we:\n\nSplit the data into training and test sets (80/20).\nApplied Random Oversampling to the training set only, balancing the classes.\nLeft the test set untouched to reflect real-world conditions.\n\nTraining set before oversampling:\n\nNo claim: 43,875\n\nClaim: 2,998\n\nTraining set after oversampling:\n\nNo claim: 43,875\n\nClaim: 43,875\n\nThis ensures the model sees enough claim examples to learn meaningful patterns."
+  },
+  {
+    "objectID": "model.html#handling-class-imbalance",
+    "href": "model.html#handling-class-imbalance",
+    "title": "Model & Results",
+    "section": "",
+    "text": "The target variable (claim_status) is highly imbalanced:\n\n93.6% of policies result in no claim\n6.4% of policies result in a claim\nImbalance ratio: 14.6 : 1\n\nA model trained directly on this distribution would tend to predict “no claim” almost every time. To address this, we:\n\nSplit the data into training and test sets (80/20).\nApplied Random Oversampling to the training set only, balancing the classes.\nLeft the test set untouched to reflect real-world conditions.\n\nTraining set before oversampling:\n\nNo claim: 43,875\n\nClaim: 2,998\n\nTraining set after oversampling:\n\nNo claim: 43,875\n\nClaim: 43,875\n\nThis ensures the model sees enough claim examples to learn meaningful patterns."
+  },
+  {
+    "objectID": "model.html#model-random-forest-classifier",
+    "href": "model.html#model-random-forest-classifier",
+    "title": "Model & Results",
+    "section": "Model: Random Forest Classifier",
+    "text": "Model: Random Forest Classifier\nWe trained a Random Forest classifier, which is well-suited for this problem because it:\n\nHandles mixed numerical and encoded categorical features\n\nCaptures nonlinear relationships and interactions\n\nProvides feature importance to help interpret the model\n\nKey hyperparameters:\n\nn_estimators: 100\n\nmax_depth: 10\n\nmin_samples_split: 20\n\nmin_samples_leaf: 10\n\nclass_weight: “balanced”\n\nrandom_state: 42\n\nThe model was trained on the oversampled training data and evaluated on the original test set."
+  },
+  {
+    "objectID": "model.html#performance-on-test-data",
+    "href": "model.html#performance-on-test-data",
+    "title": "Model & Results",
+    "section": "Performance on Test Data",
+    "text": "Performance on Test Data\nFinal Random Forest results:\n\nAccuracy: 63.4%\n\nPrecision: 10.1%\n\nRecall: 59.3%\n\nF1-score: 0.17\n\nROC-AUC: 0.66\n\n\nInterpretation\n\nThe model correctly identifies many actual claim cases (good recall), which is important in an insurance context where missing a claim can be costly.\nPrecision is relatively low, meaning many flagged policies do not end up having a claim. This is a trade-off: the model is more conservative and prefers to over-flag potential risks.\nAn ROC-AUC of about 0.66 indicates moderate ability to distinguish claim vs. no-claim policies, clearly better than random guessing."
+  },
+  {
+    "objectID": "model.html#combined-model-visualization",
+    "href": "model.html#combined-model-visualization",
+    "title": "Model & Results",
+    "section": "Combined Model Visualization",
+    "text": "Combined Model Visualization\nThe figure below summarizes the main evaluation visuals from the model:\n\nConfusion Matrix\n\nROC Curve\n\nPrecision–Recall Curve\n\nFeature Importance (Top Predictors)\n\nPresenting these together provides a compact overview of model behavior and performance."
+  },
+  {
+    "objectID": "model.html#feature-interpretation",
+    "href": "model.html#feature-interpretation",
+    "title": "Model & Results",
+    "section": "Feature Interpretation",
+    "text": "Feature Interpretation\nBased on the Random Forest feature importance scores, the most influential predictors include:\n\nSubscription length\n\nVehicle age\n\nRisk-related engineered features\n\nCustomer age\n\nRegion encodings and density measures\n\nThese results are consistent with our exploratory analysis:\n\nOlder vehicles are more likely to be involved in claims.\n\nLonger subscription histories reflect more exposure time and accumulated risk.\n\nSome regions and population densities are associated with higher claim frequencies.\n\nTogether, these variables help the model prioritize which policies are more likely to result in claims."
+  },
+  {
+    "objectID": "model.html#business-interpretation",
+    "href": "model.html#business-interpretation",
+    "title": "Model & Results",
+    "section": "Business Interpretation",
+    "text": "Business Interpretation\nFrom an insurance perspective, the model can be used as a screening tool to:\n\nFlag higher-risk policies for manual underwriting review\n\nSupport region-based pricing or adjustment of risk tiers\n\nIncorporate vehicle age, subscription behavior, and regional risk into decision-making\n\nEven though the model does not achieve perfect precision, its relatively high recall and reasonable ROC-AUC make it useful for focusing attention where the risk of claims is elevated, rather than replacing human judgment entirely."
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Insurance Claims Analysis",
+    "section": "",
+    "text": "This website summarizes our group project on predicting the likelihood that an insurance policy will result in a claim. The dataset contains information about policyholders, their vehicles, and their regions, along with a binary target variable indicating whether a claim occurred.\nBecause claims are rare compared to non-claims (only about 6.4% of policies result in a claim), the data is highly imbalanced. This makes simple accuracy misleading and motivates the need for careful modeling.\nWe clean and validate the data, explore key patterns, address the class imbalance using Random Oversampling, and train a Random Forest classification model to estimate claim risk."
+  },
+  {
+    "objectID": "index.html#overview",
+    "href": "index.html#overview",
+    "title": "Insurance Claims Analysis",
+    "section": "",
+    "text": "This website summarizes our group project on predicting the likelihood that an insurance policy will result in a claim. The dataset contains information about policyholders, their vehicles, and their regions, along with a binary target variable indicating whether a claim occurred.\nBecause claims are rare compared to non-claims (only about 6.4% of policies result in a claim), the data is highly imbalanced. This makes simple accuracy misleading and motivates the need for careful modeling.\nWe clean and validate the data, explore key patterns, address the class imbalance using Random Oversampling, and train a Random Forest classification model to estimate claim risk."
+  },
+  {
+    "objectID": "index.html#what-youll-find-here",
+    "href": "index.html#what-youll-find-here",
+    "title": "Insurance Claims Analysis",
+    "section": "What You’ll Find Here",
+    "text": "What You’ll Find Here\n\nA description of the problem and dataset\nA summary of our data cleaning and validation steps\nKey visualizations illustrating class imbalance and feature patterns\nModel performance results (accuracy, recall, ROC-AUC, and more)\nBusiness insights on how these results could support insurance decision-making"
+  },
+  {
+    "objectID": "index.html#final-model-snapshot",
+    "href": "index.html#final-model-snapshot",
+    "title": "Insurance Claims Analysis",
+    "section": "Final Model Snapshot",
+    "text": "Final Model Snapshot\nOur final Random Forest model, trained on oversampled data and evaluated on the original test set, achieves:\n\nAccuracy: 63.4%\n\nRecall: 59.3%\n\nROC-AUC: 0.66\n\nThese results show that the model can identify a majority of true claims while working with a challenging, highly imbalanced dataset."
+  }
+]

@@ -1,0 +1,121 @@
+---
+title: "Model & Results"
+---
+
+## Handling Class Imbalance
+
+The target variable (`claim_status`) is highly imbalanced:
+
+- **93.6%** of policies result in **no claim**
+- **6.4%** of policies result in a **claim**
+- Imbalance ratio: **14.6 : 1**
+
+A model trained directly on this distribution would tend to predict “no claim” almost every time.
+To address this, we:
+
+1. Split the data into **training** and **test** sets (80/20).
+2. Applied **Random Oversampling** to the *training set only*, balancing the classes.
+3. Left the test set untouched to reflect real-world conditions.
+
+**Training set before oversampling:**
+
+- No claim: 43,875  
+- Claim: 2,998  
+
+**Training set after oversampling:**
+
+- No claim: 43,875  
+- Claim: 43,875  
+
+This ensures the model sees enough claim examples to learn meaningful patterns.
+
+---
+
+## Model: Random Forest Classifier
+
+We trained a **Random Forest classifier**, which is well-suited for this problem because it:
+
+- Handles mixed numerical and encoded categorical features  
+- Captures nonlinear relationships and interactions  
+- Provides **feature importance** to help interpret the model  
+
+**Key hyperparameters:**
+
+- `n_estimators`: 100  
+- `max_depth`: 10  
+- `min_samples_split`: 20  
+- `min_samples_leaf`: 10  
+- `class_weight`: "balanced"  
+- `random_state`: 42  
+
+The model was trained on the **oversampled training data** and evaluated on the **original test set**.
+
+---
+
+## Performance on Test Data
+
+**Final Random Forest results:**
+
+- **Accuracy:** 63.4%  
+- **Precision:** 10.1%  
+- **Recall:** 59.3%  
+- **F1-score:** 0.17  
+- **ROC-AUC:** 0.66  
+
+### Interpretation
+
+- The model correctly identifies **many actual claim cases** (good recall), which is important in an
+  insurance context where missing a claim can be costly.
+- Precision is relatively low, meaning many flagged policies do **not** end up having a claim. This is
+  a trade-off: the model is more conservative and prefers to **over-flag** potential risks.
+- An ROC-AUC of about **0.66** indicates moderate ability to distinguish claim vs. no-claim policies,
+  clearly better than random guessing.
+
+---
+
+## Combined Model Visualization
+
+The figure below summarizes the main evaluation visuals from the model:
+
+- **Confusion Matrix**  
+- **ROC Curve**  
+- **Precision–Recall Curve**  
+- **Feature Importance (Top Predictors)**  
+
+Presenting these together provides a compact overview of model behavior and performance.
+
+![](images/model_results_overview.png)
+
+---
+
+## Feature Interpretation
+
+Based on the Random Forest feature importance scores, the most influential predictors include:
+
+1. **Subscription length**  
+2. **Vehicle age**  
+3. **Risk-related engineered features**  
+4. **Customer age**  
+5. **Region encodings and density measures**  
+
+These results are consistent with our exploratory analysis:
+
+- Older vehicles are more likely to be involved in claims.  
+- Longer subscription histories reflect more exposure time and accumulated risk.  
+- Some regions and population densities are associated with higher claim frequencies.  
+
+Together, these variables help the model prioritize which policies are more likely to result in claims.
+
+---
+
+## Business Interpretation
+
+From an insurance perspective, the model can be used as a **screening tool** to:
+
+- Flag higher-risk policies for **manual underwriting review**  
+- Support **region-based pricing** or adjustment of risk tiers  
+- Incorporate **vehicle age**, **subscription behavior**, and **regional risk** into decision-making  
+
+Even though the model does not achieve perfect precision, its relatively high recall and reasonable
+ROC-AUC make it useful for focusing attention where the risk of claims is elevated, rather than
+replacing human judgment entirely.

@@ -1,0 +1,36 @@
+---
+title: "Insurance Claims Analysis"
+---
+
+## Overview
+
+This website summarizes our group project on predicting the likelihood that an insurance policy
+will result in a claim. The dataset contains information about policyholders, their vehicles,
+and their regions, along with a binary target variable indicating whether a claim occurred.
+
+Because claims are rare compared to non-claims (only about 6.4% of policies result in a claim),
+the data is highly imbalanced. This makes simple accuracy misleading and motivates the need
+for careful modeling.
+
+We clean and validate the data, explore key patterns, address the class imbalance using
+Random Oversampling, and train a Random Forest classification model to estimate claim risk.
+
+## What You’ll Find Here
+
+- A description of the problem and dataset
+- A summary of our data cleaning and validation steps
+- Key visualizations illustrating class imbalance and feature patterns
+- Model performance results (accuracy, recall, ROC-AUC, and more)
+- Business insights on how these results could support insurance decision-making
+
+## Final Model Snapshot
+
+Our final Random Forest model, trained on oversampled data and evaluated on the original
+test set, achieves:
+
+- **Accuracy:** 63.4%  
+- **Recall:** 59.3%  
+- **ROC-AUC:** 0.66  
+
+These results show that the model can identify a majority of true claims while working
+with a challenging, highly imbalanced dataset.

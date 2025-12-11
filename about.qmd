@@ -1,0 +1,69 @@
+---
+title: "Project Details"
+---
+
+## The Problem
+
+Insurance companies need to understand which policies are more likely to result in claims so they
+can price risk appropriately and focus attention on higher-risk customers. However, in our dataset
+only about **6.4%** of policies have a claim, while **93.6%** do not. This strong class imbalance
+(about **14.6 : 1**) makes prediction challenging, because a naïve model could achieve high accuracy
+by always predicting "no claim" without learning any useful pattern.
+
+## The Data
+
+We work with a dataset of **58,592 insurance policies** and **41 features**, including:
+
+- Policy information (subscription length, policy details)
+- Vehicle characteristics (vehicle age, engine specs, safety features)
+- Regional information (region codes and region density)
+- A binary target variable `claim_status` indicating whether a claim occurred (1) or not (0)
+
+During our initial checks, we confirmed:
+
+- No missing values  
+- No duplicate rows  
+- Consistent data types across columns  
+
+This allowed us to focus on feature engineering and modeling instead of heavy data cleaning.
+
+## Our Approach
+
+Our main steps were:
+
+1. **Data validation and preparation**  
+   - Verified there were no missing values or duplicates  
+   - Encoded categorical variables into numeric form suitable for modeling  
+   - Created simple engineered features (e.g., grouping ages or combining risk-related information)
+
+2. **Exploratory data analysis (EDA)**  
+   - Measured class imbalance (93.6% no-claim vs 6.4% claim)  
+   - Examined distributions of key features such as subscription length and vehicle age  
+   - Compared claim rates across regions and other relevant categories  
+
+3. **Handling class imbalance**  
+   - Applied **Random Oversampling** to the training set only, so the model could learn from
+     enough claim examples while still evaluating on the original, imbalanced test set.
+
+4. **Modeling and evaluation**  
+   - Trained a **Random Forest classifier** on the oversampled training data  
+   - Evaluated the model on the untouched test data using:
+     - Accuracy
+     - Precision
+     - Recall
+     - F1-score
+     - ROC-AUC
+     - Confusion matrix
+
+## High-Level Findings
+
+- The target variable is heavily imbalanced, but oversampling helps the model recognize claim cases.
+- Features like subscription length, vehicle age, and region-related variables are among the most important
+  predictors in the Random Forest model.
+- The model is able to capture non-random patterns in claim behavior and can serve as a screening tool
+  to flag higher-risk policies for closer review.
+
+## Team
+
+- Kenan Batu
+- Nyasha Sibanda
