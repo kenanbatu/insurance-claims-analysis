@@ -119,18 +119,8 @@ ul.task-list li input[type="checkbox"] {
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active">
-    <h2 id="toc-title">On this page</h2>
-   
-  <ul>
-  <li><a href="#distributions-of-key-numerical-features" id="toc-distributions-of-key-numerical-features" class="nav-link active" data-scroll-target="#distributions-of-key-numerical-features">Distributions of Key Numerical Features</a></li>
-  <li><a href="#claim-rates-across-categories" id="toc-claim-rates-across-categories" class="nav-link" data-scroll-target="#claim-rates-across-categories">Claim Rates Across Categories</a></li>
-  <li><a href="#regional-claim-differences" id="toc-regional-claim-differences" class="nav-link" data-scroll-target="#regional-claim-differences">Regional Claim Differences</a></li>
-  <li><a href="#subscription-length-and-claim-behavior" id="toc-subscription-length-and-claim-behavior" class="nav-link" data-scroll-target="#subscription-length-and-claim-behavior">Subscription Length and Claim Behavior</a></li>
-  <li><a href="#interactive-claim-rates-by-region" id="toc-interactive-claim-rates-by-region" class="nav-link" data-scroll-target="#interactive-claim-rates-by-region">Interactive: Claim Rates by Region</a></li>
-  </ul>
-</nav>
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
+        
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
@@ -154,99 +144,8 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<section id="distributions-of-key-numerical-features" class="level2">
-<h2 class="anchored" data-anchor-id="distributions-of-key-numerical-features">Distributions of Key Numerical Features</h2>
-<p>We begin our exploratory data analysis by looking at the distributions of three important numerical variables:</p>
-<ul>
-<li><strong>Customer age</strong></li>
-<li><strong>Vehicle age</strong></li>
-<li><strong>Subscription length</strong></li>
-</ul>
-<p>These histograms help us understand the spread and central tendencies of key features that later play a role in the model.</p>
-<p><img src="images/num_feature_distributions.png" class="img-fluid"></p>
-<p><strong>What we observe:</strong></p>
-<ul>
-<li>Customer ages are mostly concentrated in a working-age range (roughly mid-20s to mid-50s).<br>
-</li>
-<li>Vehicle age is skewed toward newer cars, but older vehicles are present as well.<br>
-</li>
-<li>Subscription length varies widely, which later shows up as an important predictor of claim risk.</li>
-</ul>
-<p>These patterns help us understand the context of the model inputs.</p>
-<hr>
-</section>
-<section id="claim-rates-across-categories" class="level2">
-<h2 class="anchored" data-anchor-id="claim-rates-across-categories">Claim Rates Across Categories</h2>
-<p>Next, we examine how claim rates vary across key categorical features:</p>
-<ul>
-<li><strong>Fuel type</strong><br>
-</li>
-<li><strong>Region density</strong><br>
-</li>
-<li><strong>Vehicle segment</strong></li>
-</ul>
-<p>This lets us see which groups have relatively higher or lower risk.</p>
-<p><img src="images/categorical_claim_rates.png" class="img-fluid"></p>
-<p><strong>Insights:</strong></p>
-<ul>
-<li>Certain fuel types are associated with slightly higher claim frequencies.<br>
-</li>
-<li>Regions with higher population density tend to show higher claim rates, which is consistent with increased traffic exposure.<br>
-</li>
-<li>Some vehicle segments stand out with noticeably higher risk than others.</li>
-</ul>
-<p>These category-level differences help explain why these variables can be useful predictors in the model.</p>
-<hr>
-</section>
-<section id="regional-claim-differences" class="level2">
-<h2 class="anchored" data-anchor-id="regional-claim-differences">Regional Claim Differences</h2>
-<p>We also look at claim rates by region. This highlights how geography influences risk.</p>
-<p><img src="images/region_claim_rates.png" class="img-fluid"></p>
-<p><strong>Interpretation:</strong></p>
-<ul>
-<li>Some regions have claim rates above 10%, while others are closer to 4%.<br>
-</li>
-<li>This indicates that where a customer lives is an important factor in claim likelihood.<br>
-</li>
-<li>These regional patterns later align with feature importance results from the Random Forest model.</li>
-</ul>
-<hr>
-</section>
-<section id="subscription-length-and-claim-behavior" class="level2">
-<h2 class="anchored" data-anchor-id="subscription-length-and-claim-behavior">Subscription Length and Claim Behavior</h2>
-<p>Subscription length captures how long a policy has been active. We explore how claim behavior varies across different subscription lengths.</p>
-<p><img src="images/subscription_length_vs_claim.png" class="img-fluid"></p>
-<p><strong>What we see:</strong></p>
-<ul>
-<li>Policies with longer subscription durations tend to have higher observed claim rates.<br>
-</li>
-<li>This makes sense: the longer a policy is active, the more time there is for a claim to occur.</li>
-</ul>
-<p>This supports the idea that subscription length is not just a timing variable, but a meaningful indicator of accumulated risk.</p>
-<hr>
-</section>
-<section id="interactive-claim-rates-by-region" class="level2">
-<h2 class="anchored" data-anchor-id="interactive-claim-rates-by-region">Interactive: Claim Rates by Region</h2>
-<p>The plot below is an interactive visualization of claim behavior by region. Each point represents a region, with:</p>
-<ul>
-<li><strong>X-axis:</strong> number of policies<br>
-</li>
-<li><strong>Y-axis:</strong> claim rate (percentage)<br>
-</li>
-<li><strong>Point size:</strong> number of policies<br>
-</li>
-<li><strong>Color:</strong> claim percentage</li>
-</ul>
-<p>Hover over points to see more detailed information for each region.</p>
-<p>import pandas as pd import plotly.express as px</p>
-<p>df = pd.read_csv(“insurance_claims.csv”)</p>
-<p>region_summary = df.groupby(‘region_code’).agg({ ‘claim_status’: [‘mean’, ‘count’], ‘customer_age’: ‘mean’, ‘region_density’: ‘first’ }).reset_index()</p>
-<p>region_summary.columns = [‘region’, ‘claim_rate’, ‘policies’, ‘avg_age’, ‘density’] region_summary[‘claim_pct’] = region_summary[‘claim_rate’] * 100</p>
-<p>fig = px.scatter( region_summary, x=‘policies’, y=‘claim_pct’, size=‘policies’, color=‘claim_pct’, hover_name=‘region’, hover_data={‘policies’:‘:,’, ‘claim_pct’:‘:.2f’, ‘avg_age’:‘:.1f’}, title=‘Interactive: Claim Rates by Region’, color_continuous_scale=‘Reds’, size_max=30, height=500 )</p>
-<p>fig</p>
 
 
-</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">

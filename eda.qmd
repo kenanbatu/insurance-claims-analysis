@@ -19,107 +19,74 @@ later play a role in the model.
 
 **What we observe:**
 
-- Customer ages are mostly concentrated in a working-age range (roughly mid-20s to mid-50s).  
-- Vehicle age is skewed toward newer cars, but older vehicles are present as well.  
-- Subscription length varies widely, which later shows up as an important predictor of claim risk.  
-
-These patterns help us understand the context of the model inputs.
+- Customer ages are mostly concentrated in a working-age range.  
+- Vehicle age is skewed toward newer cars.  
+- Subscription length varies widely and later appears as a strong predictor.
 
 ---
 
 ## Claim Rates Across Categories
 
-Next, we examine how claim rates vary across key categorical features:
+This visualization compares claim rates across:
 
 - **Fuel type**  
 - **Region density**  
-- **Vehicle segment**  
-
-This lets us see which groups have relatively higher or lower risk.
+- **Vehicle segment**
 
 ![](images/categorical_claim_rates.png)
 
 **Insights:**
 
-- Certain fuel types are associated with slightly higher claim frequencies.  
-- Regions with higher population density tend to show higher claim rates, which is consistent with
-  increased traffic exposure.  
-- Some vehicle segments stand out with noticeably higher risk than others.  
-
-These category-level differences help explain why these variables can be useful predictors in the model.
+- Some fuel types show slightly higher claim risk.  
+- Claim rates increase in higher-density regions.  
+- Certain vehicle segments consistently have higher claim frequencies.
 
 ---
 
 ## Regional Claim Differences
 
-We also look at claim rates by region. This highlights how geography influences risk.
+We also examine geographic variation in claims.
 
 ![](images/region_claim_rates.png)
 
 **Interpretation:**
 
-- Some regions have claim rates above 10%, while others are closer to 4%.  
-- This indicates that where a customer lives is an important factor in claim likelihood.  
-- These regional patterns later align with feature importance results from the Random Forest model.  
+- Claim behavior varies meaningfully across regions.  
+- Some regions exceed 10% claim rate while others sit closer to 4%.  
+- Geography is therefore an important predictor in our model.
 
 ---
 
 ## Subscription Length and Claim Behavior
 
-Subscription length captures how long a policy has been active. We explore how claim behavior varies
-across different subscription lengths.
-
 ![](images/subscription_length_vs_claim.png)
 
-**What we see:**
+**We observe:**
 
-- Policies with longer subscription durations tend to have higher observed claim rates.  
-- This makes sense: the longer a policy is active, the more time there is for a claim to occur.  
-
-This supports the idea that subscription length is not just a timing variable, but a meaningful
-indicator of accumulated risk.
+- Longer subscription durations correlate with higher claim rates.  
+- This reflects accumulated exposure time and helps explain why subscription length
+  appears as a top feature in the model.
 
 ---
 
 ## Interactive: Claim Rates by Region
 
-The plot below is an interactive visualization of claim behavior by region. Each point represents
-a region, with:
+The visualization below is a fully interactive version of regional claim behavior.
+You can hover over points to see:
 
-- **X-axis:** number of policies  
-- **Y-axis:** claim rate (percentage)  
-- **Point size:** number of policies  
-- **Color:** claim percentage  
+- Claim rate (percentage)  
+- Number of policies in that region  
+- Average customer age  
+- Population density  
 
-Hover over points to see more detailed information for each region.
+This interactive chart allows a more detailed exploration of geographic patterns.
 
-```{python}
-import pandas as pd
-import plotly.express as px
+### Interactive Plot
 
-df = pd.read_csv("insurance_claims.csv")
+<iframe src="region_claims_interactive.html"
+        width="100%"
+        height="520"
+        style="border:none;">
+</iframe>
 
-region_summary = df.groupby('region_code').agg({
-    'claim_status': ['mean', 'count'],
-    'customer_age': 'mean',
-    'region_density': 'first'
-}).reset_index()
-
-region_summary.columns = ['region', 'claim_rate', 'policies', 'avg_age', 'density']
-region_summary['claim_pct'] = region_summary['claim_rate'] * 100
-
-fig = px.scatter(
-    region_summary,
-    x='policies',
-    y='claim_pct',
-    size='policies',
-    color='claim_pct',
-    hover_name='region',
-    hover_data={'policies':':,', 'claim_pct':':.2f', 'avg_age':':.1f'},
-    title='Interactive: Claim Rates by Region',
-    color_continuous_scale='Reds',
-    size_max=30,
-    height=500
-)
-
-fig
+---

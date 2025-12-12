@@ -42,48 +42,6 @@
     "text": "Team\n\nKenan Batu\nNyasha Sibanda"
   },
   {
-    "objectID": "eda.html",
-    "href": "eda.html",
-    "title": "Exploratory Analysis",
-    "section": "",
-    "text": "We begin our exploratory data analysis by looking at the distributions of three important numerical variables:\n\nCustomer age\nVehicle age\nSubscription length\n\nThese histograms help us understand the spread and central tendencies of key features that later play a role in the model.\n\nWhat we observe:\n\nCustomer ages are mostly concentrated in a working-age range (roughly mid-20s to mid-50s).\n\nVehicle age is skewed toward newer cars, but older vehicles are present as well.\n\nSubscription length varies widely, which later shows up as an important predictor of claim risk.\n\nThese patterns help us understand the context of the model inputs."
-  },
-  {
-    "objectID": "eda.html#distributions-of-key-numerical-features",
-    "href": "eda.html#distributions-of-key-numerical-features",
-    "title": "Exploratory Analysis",
-    "section": "",
-    "text": "We begin our exploratory data analysis by looking at the distributions of three important numerical variables:\n\nCustomer age\nVehicle age\nSubscription length\n\nThese histograms help us understand the spread and central tendencies of key features that later play a role in the model.\n\nWhat we observe:\n\nCustomer ages are mostly concentrated in a working-age range (roughly mid-20s to mid-50s).\n\nVehicle age is skewed toward newer cars, but older vehicles are present as well.\n\nSubscription length varies widely, which later shows up as an important predictor of claim risk.\n\nThese patterns help us understand the context of the model inputs."
-  },
-  {
-    "objectID": "eda.html#claim-rates-across-categories",
-    "href": "eda.html#claim-rates-across-categories",
-    "title": "Exploratory Analysis",
-    "section": "Claim Rates Across Categories",
-    "text": "Claim Rates Across Categories\nNext, we examine how claim rates vary across key categorical features:\n\nFuel type\n\nRegion density\n\nVehicle segment\n\nThis lets us see which groups have relatively higher or lower risk.\n\nInsights:\n\nCertain fuel types are associated with slightly higher claim frequencies.\n\nRegions with higher population density tend to show higher claim rates, which is consistent with increased traffic exposure.\n\nSome vehicle segments stand out with noticeably higher risk than others.\n\nThese category-level differences help explain why these variables can be useful predictors in the model."
-  },
-  {
-    "objectID": "eda.html#regional-claim-differences",
-    "href": "eda.html#regional-claim-differences",
-    "title": "Exploratory Analysis",
-    "section": "Regional Claim Differences",
-    "text": "Regional Claim Differences\nWe also look at claim rates by region. This highlights how geography influences risk.\n\nInterpretation:\n\nSome regions have claim rates above 10%, while others are closer to 4%.\n\nThis indicates that where a customer lives is an important factor in claim likelihood.\n\nThese regional patterns later align with feature importance results from the Random Forest model."
-  },
-  {
-    "objectID": "eda.html#subscription-length-and-claim-behavior",
-    "href": "eda.html#subscription-length-and-claim-behavior",
-    "title": "Exploratory Analysis",
-    "section": "Subscription Length and Claim Behavior",
-    "text": "Subscription Length and Claim Behavior\nSubscription length captures how long a policy has been active. We explore how claim behavior varies across different subscription lengths.\n\nWhat we see:\n\nPolicies with longer subscription durations tend to have higher observed claim rates.\n\nThis makes sense: the longer a policy is active, the more time there is for a claim to occur.\n\nThis supports the idea that subscription length is not just a timing variable, but a meaningful indicator of accumulated risk."
-  },
-  {
-    "objectID": "eda.html#interactive-claim-rates-by-region",
-    "href": "eda.html#interactive-claim-rates-by-region",
-    "title": "Exploratory Analysis",
-    "section": "Interactive: Claim Rates by Region",
-    "text": "Interactive: Claim Rates by Region\nThe plot below is an interactive visualization of claim behavior by region. Each point represents a region, with:\n\nX-axis: number of policies\n\nY-axis: claim rate (percentage)\n\nPoint size: number of policies\n\nColor: claim percentage\n\nHover over points to see more detailed information for each region.\nimport pandas as pd import plotly.express as px\ndf = pd.read_csv(“insurance_claims.csv”)\nregion_summary = df.groupby(‘region_code’).agg({ ‘claim_status’: [‘mean’, ‘count’], ‘customer_age’: ‘mean’, ‘region_density’: ‘first’ }).reset_index()\nregion_summary.columns = [‘region’, ‘claim_rate’, ‘policies’, ‘avg_age’, ‘density’] region_summary[‘claim_pct’] = region_summary[‘claim_rate’] * 100\nfig = px.scatter( region_summary, x=‘policies’, y=‘claim_pct’, size=‘policies’, color=‘claim_pct’, hover_name=‘region’, hover_data={‘policies’:‘:,’, ‘claim_pct’:‘:.2f’, ‘avg_age’:‘:.1f’}, title=‘Interactive: Claim Rates by Region’, color_continuous_scale=‘Reds’, size_max=30, height=500 )\nfig"
-  },
-  {
     "objectID": "model.html",
     "href": "model.html",
     "title": "Model & Results",
