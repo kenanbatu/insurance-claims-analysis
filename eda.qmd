@@ -95,30 +95,29 @@ This interactive chart allows a more detailed exploration of geographic patterns
 import pandas as pd
 import plotly.express as px
 
-# IMPORTANT: update this path to where your CSV actually lives inside the site folder
 df = pd.read_csv("insurance_claims.csv")
 
-region_summary = df.groupby('region_code').agg({
-    'claim_status': ['mean', 'count'],
-    'customer_age': 'mean',
-    'region_density': 'first'
-}).reset_index()
+region_summary = df.groupby("region_code").agg(
+    claim_rate=("claim_status", "mean"),
+    policies=("claim_status", "count"),
+    avg_age=("customer_age", "mean"),
+    density=("region_density", "first")
+).reset_index()
 
-region_summary.columns = ['region', 'claim_rate', 'policies', 'avg_age', 'density']
-region_summary['claim_pct'] = region_summary['claim_rate'] * 100
+region_summary["claim_pct"] = region_summary["claim_rate"] * 100
 
 fig = px.scatter(
     region_summary,
-    x='policies', y='claim_pct',
-    size='policies',
-    color='claim_pct',
-    hover_name='region',
-    hover_data={'policies':':,', 'claim_pct':':.2f', 'avg_age':':.1f'},
-    title='Interactive: Claim Rates by Region',
+    x="policies",
+    y="claim_pct",
+    size="policies",
+    color="claim_pct",
+    hover_name="region_code",
+    hover_data={"policies":":,", "claim_pct":":.2f", "avg_age":":.1f"},
+    title="Interactive: Claim Rates by Region",
     size_max=30,
     height=500
 )
 
 fig.show()
-
-<iframe src="images/claim_rates_by_region.html" width="100%" height="560" style="border:none;"></iframe>
+```

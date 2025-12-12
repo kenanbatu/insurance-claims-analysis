@@ -81,7 +81,7 @@
     "href": "eda.html#interactive-claim-rates-by-region",
     "title": "Exploratory Analysis",
     "section": "Interactive: Claim Rates by Region",
-    "text": "Interactive: Claim Rates by Region\nThe visualization below is a fully interactive version of regional claim behavior. You can hover over points to see:\n\nClaim rate (percentage)\n\nNumber of policies in that region\n\nAverage customer age\n\nPopulation density\n\nThis interactive chart allows a more detailed exploration of geographic patterns.\n\nInteractive Plot\n#| label: interactive-claim-rates-by-region #| echo: false #| warning: false #| message: false\nimport pandas as pd import plotly.express as px"
+    "text": "Interactive: Claim Rates by Region\nThe visualization below is a fully interactive version of regional claim behavior. You can hover over points to see:\n\nClaim rate (percentage)\n\nNumber of policies in that region\n\nAverage customer age\n\nPopulation density\n\nThis interactive chart allows a more detailed exploration of geographic patterns.\n\nInteractive Plot"
   },
   {
     "objectID": "model.html",
