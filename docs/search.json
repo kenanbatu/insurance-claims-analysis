@@ -42,6 +42,48 @@
     "text": "Team\n\nKenan Batu\nNyasha Sibanda"
   },
   {
+    "objectID": "eda.html",
+    "href": "eda.html",
+    "title": "Exploratory Analysis",
+    "section": "",
+    "text": "We begin our exploratory data analysis by looking at the distributions of three important numerical variables:\n\nCustomer age\nVehicle age\nSubscription length\n\nThese histograms help us understand the spread and central tendencies of key features that later play a role in the model.\n\nWhat we observe:\n\nCustomer ages are mostly concentrated in a working-age range.\n\nVehicle age is skewed toward newer cars.\n\nSubscription length varies widely and later appears as a strong predictor."
+  },
+  {
+    "objectID": "eda.html#distributions-of-key-numerical-features",
+    "href": "eda.html#distributions-of-key-numerical-features",
+    "title": "Exploratory Analysis",
+    "section": "",
+    "text": "We begin our exploratory data analysis by looking at the distributions of three important numerical variables:\n\nCustomer age\nVehicle age\nSubscription length\n\nThese histograms help us understand the spread and central tendencies of key features that later play a role in the model.\n\nWhat we observe:\n\nCustomer ages are mostly concentrated in a working-age range.\n\nVehicle age is skewed toward newer cars.\n\nSubscription length varies widely and later appears as a strong predictor."
+  },
+  {
+    "objectID": "eda.html#claim-rates-across-categories",
+    "href": "eda.html#claim-rates-across-categories",
+    "title": "Exploratory Analysis",
+    "section": "Claim Rates Across Categories",
+    "text": "Claim Rates Across Categories\nThis visualization compares claim rates across:\n\nFuel type\n\nRegion density\n\nVehicle segment\n\n\nInsights:\n\nSome fuel types show slightly higher claim risk.\n\nClaim rates increase in higher-density regions.\n\nCertain vehicle segments consistently have higher claim frequencies."
+  },
+  {
+    "objectID": "eda.html#regional-claim-differences",
+    "href": "eda.html#regional-claim-differences",
+    "title": "Exploratory Analysis",
+    "section": "Regional Claim Differences",
+    "text": "Regional Claim Differences\nWe also examine geographic variation in claims.\n\nInterpretation:\n\nClaim behavior varies meaningfully across regions.\n\nSome regions exceed 10% claim rate while others sit closer to 4%.\n\nGeography is therefore an important predictor in our model."
+  },
+  {
+    "objectID": "eda.html#subscription-length-and-claim-behavior",
+    "href": "eda.html#subscription-length-and-claim-behavior",
+    "title": "Exploratory Analysis",
+    "section": "Subscription Length and Claim Behavior",
+    "text": "Subscription Length and Claim Behavior\n\nWe observe:\n\nLonger subscription durations correlate with higher claim rates.\n\nThis reflects accumulated exposure time and helps explain why subscription length appears as a top feature in the model."
+  },
+  {
+    "objectID": "eda.html#interactive-claim-rates-by-region",
+    "href": "eda.html#interactive-claim-rates-by-region",
+    "title": "Exploratory Analysis",
+    "section": "Interactive: Claim Rates by Region",
+    "text": "Interactive: Claim Rates by Region\nThe visualization below is a fully interactive version of regional claim behavior. You can hover over points to see:\n\nClaim rate (percentage)\n\nNumber of policies in that region\n\nAverage customer age\n\nPopulation density\n\nThis interactive chart allows a more detailed exploration of geographic patterns.\n\nInteractive Plot\n#| label: interactive-claim-rates-by-region #| echo: false #| warning: false #| message: false\nimport pandas as pd import plotly.express as px"
+  },
+  {
     "objectID": "model.html",
     "href": "model.html",
     "title": "Model & Results",

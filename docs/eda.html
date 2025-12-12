@@ -119,8 +119,22 @@ ul.task-list li input[type="checkbox"] {
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#distributions-of-key-numerical-features" id="toc-distributions-of-key-numerical-features" class="nav-link active" data-scroll-target="#distributions-of-key-numerical-features">Distributions of Key Numerical Features</a></li>
+  <li><a href="#claim-rates-across-categories" id="toc-claim-rates-across-categories" class="nav-link" data-scroll-target="#claim-rates-across-categories">Claim Rates Across Categories</a></li>
+  <li><a href="#regional-claim-differences" id="toc-regional-claim-differences" class="nav-link" data-scroll-target="#regional-claim-differences">Regional Claim Differences</a></li>
+  <li><a href="#subscription-length-and-claim-behavior" id="toc-subscription-length-and-claim-behavior" class="nav-link" data-scroll-target="#subscription-length-and-claim-behavior">Subscription Length and Claim Behavior</a></li>
+  <li><a href="#interactive-claim-rates-by-region" id="toc-interactive-claim-rates-by-region" class="nav-link" data-scroll-target="#interactive-claim-rates-by-region">Interactive: Claim Rates by Region</a>
+  <ul class="collapse">
+  <li><a href="#interactive-plot" id="toc-interactive-plot" class="nav-link" data-scroll-target="#interactive-plot">Interactive Plot</a></li>
+  </ul></li>
+  <li><a href="#important-update-this-path-to-where-your-csv-actually-lives-inside-the-site-folder" id="toc-important-update-this-path-to-where-your-csv-actually-lives-inside-the-site-folder" class="nav-link" data-scroll-target="#important-update-this-path-to-where-your-csv-actually-lives-inside-the-site-folder">IMPORTANT: update this path to where your CSV actually lives inside the site folder</a></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
@@ -144,8 +158,103 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
+<section id="distributions-of-key-numerical-features" class="level2">
+<h2 class="anchored" data-anchor-id="distributions-of-key-numerical-features">Distributions of Key Numerical Features</h2>
+<p>We begin our exploratory data analysis by looking at the distributions of three important numerical variables:</p>
+<ul>
+<li><strong>Customer age</strong></li>
+<li><strong>Vehicle age</strong></li>
+<li><strong>Subscription length</strong></li>
+</ul>
+<p>These histograms help us understand the spread and central tendencies of key features that later play a role in the model.</p>
+<p><img src="images/num_feature_distributions.png" class="img-fluid"></p>
+<p><strong>What we observe:</strong></p>
+<ul>
+<li>Customer ages are mostly concentrated in a working-age range.<br>
+</li>
+<li>Vehicle age is skewed toward newer cars.<br>
+</li>
+<li>Subscription length varies widely and later appears as a strong predictor.</li>
+</ul>
+<hr>
+</section>
+<section id="claim-rates-across-categories" class="level2">
+<h2 class="anchored" data-anchor-id="claim-rates-across-categories">Claim Rates Across Categories</h2>
+<p>This visualization compares claim rates across:</p>
+<ul>
+<li><strong>Fuel type</strong><br>
+</li>
+<li><strong>Region density</strong><br>
+</li>
+<li><strong>Vehicle segment</strong></li>
+</ul>
+<p><img src="images/categorical_claim_rates.png" class="img-fluid"></p>
+<p><strong>Insights:</strong></p>
+<ul>
+<li>Some fuel types show slightly higher claim risk.<br>
+</li>
+<li>Claim rates increase in higher-density regions.<br>
+</li>
+<li>Certain vehicle segments consistently have higher claim frequencies.</li>
+</ul>
+<hr>
+</section>
+<section id="regional-claim-differences" class="level2">
+<h2 class="anchored" data-anchor-id="regional-claim-differences">Regional Claim Differences</h2>
+<p>We also examine geographic variation in claims.</p>
+<p><img src="images/region_claim_rates.png" class="img-fluid"></p>
+<p><strong>Interpretation:</strong></p>
+<ul>
+<li>Claim behavior varies meaningfully across regions.<br>
+</li>
+<li>Some regions exceed 10% claim rate while others sit closer to 4%.<br>
+</li>
+<li>Geography is therefore an important predictor in our model.</li>
+</ul>
+<hr>
+</section>
+<section id="subscription-length-and-claim-behavior" class="level2">
+<h2 class="anchored" data-anchor-id="subscription-length-and-claim-behavior">Subscription Length and Claim Behavior</h2>
+<p><img src="images/subscription_length_vs_claim.png" class="img-fluid"></p>
+<p><strong>We observe:</strong></p>
+<ul>
+<li>Longer subscription durations correlate with higher claim rates.<br>
+</li>
+<li>This reflects accumulated exposure time and helps explain why subscription length appears as a top feature in the model.</li>
+</ul>
+<hr>
+</section>
+<section id="interactive-claim-rates-by-region" class="level2">
+<h2 class="anchored" data-anchor-id="interactive-claim-rates-by-region">Interactive: Claim Rates by Region</h2>
+<p>The visualization below is a fully interactive version of regional claim behavior. You can hover over points to see:</p>
+<ul>
+<li>Claim rate (percentage)<br>
+</li>
+<li>Number of policies in that region<br>
+</li>
+<li>Average customer age<br>
+</li>
+<li>Population density</li>
+</ul>
+<p>This interactive chart allows a more detailed exploration of geographic patterns.</p>
+<section id="interactive-plot" class="level3">
+<h3 class="anchored" data-anchor-id="interactive-plot">Interactive Plot</h3>
+<p>#| label: interactive-claim-rates-by-region #| echo: false #| warning: false #| message: false</p>
+<p>import pandas as pd import plotly.express as px</p>
+</section>
+</section>
+<section id="important-update-this-path-to-where-your-csv-actually-lives-inside-the-site-folder" class="level1">
+<h1>IMPORTANT: update this path to where your CSV actually lives inside the site folder</h1>
+<p>df = pd.read_csv(“insurance_claims.csv”)</p>
+<p>region_summary = df.groupby(‘region_code’).agg({ ‘claim_status’: [‘mean’, ‘count’], ‘customer_age’: ‘mean’, ‘region_density’: ‘first’ }).reset_index()</p>
+<p>region_summary.columns = [‘region’, ‘claim_rate’, ‘policies’, ‘avg_age’, ‘density’] region_summary[‘claim_pct’] = region_summary[‘claim_rate’] * 100</p>
+<p>fig = px.scatter( region_summary, x=‘policies’, y=‘claim_pct’, size=‘policies’, color=‘claim_pct’, hover_name=‘region’, hover_data={‘policies’:‘:,’, ‘claim_pct’:‘:.2f’, ‘avg_age’:‘:.1f’}, title=‘Interactive: Claim Rates by Region’, size_max=30, height=500 )</p>
+<p>fig.show()</p>
+<iframe src="images/claim_rates_by_region.html" width="100%" height="560" style="border:none;">
+</iframe>
 
 
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
